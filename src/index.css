@@ -1,0 +1,230 @@
+:root {
+  --c2-bg-dark: #030811;
+  --c2-panel-bg: rgba(5, 16, 28, 0.92);
+  --c2-cyan: #00e5ff;
+  --c2-cyan-dim: #00838f;
+  --c2-cyan-glow: rgba(0, 229, 255, 0.25);
+  --c2-green: #76ff03;
+  --c2-amber: #ff9100;
+  --c2-red: #ff1744;
+  --c2-purple: #d500f9;
+  --c2-border: rgba(0, 229, 255, 0.22);
+  --c2-border-glow: 0 0 15px rgba(0, 229, 255, 0.15);
+  --c2-text-main: #e0f7fa;
+  --c2-text-dim: #90a4ae;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--c2-bg-dark);
+  color: var(--c2-text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle Tactical CRT Scanline Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* Custom Tactical Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(4, 12, 20, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.35);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00e5ff;
+}
+
+/* Button & Interactive Animations */
+button {
+  transition: all 0.15s ease-in-out;
+  outline: none;
+}
+
+button:hover {
+  filter: brightness(1.15);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.hud-btn:hover {
+  background: rgba(0, 229, 255, 0.2) !important;
+  color: #00e5ff !important;
+}
+
+/* Range input styling */
+input[type=range] {
+  -webkit-appearance: none;
+  background: rgba(10, 25, 40, 0.8);
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00e5ff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+}
+
+/* Pulse animation for Tactical Warnings */
+@keyframes radar-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.alert-pulse {
+  animation: radar-pulse 2s infinite ease-in-out;
+}
+
+/* Print Styles for After Action Review (AAR) */
+@media print {
+  body::after {
+    display: none;
+  }
+  .app-c2-header,
+  .app-c2-main,
+  .sandtable-container,
+  .tactical-hud-top {
+    display: none !important;
+  }
+  .printable-aar {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .printable-aar * {
+    color: #000 !important;
+    background: transparent !important;
+    border-color: #333 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ==========================================================================
+   SCREEN-FRIENDLY & RESPONSIVE TACTICAL LAYOUT ENHANCEMENTS
+   ========================================================================== */
+
+/* Main Stage Grid Transitions */
+.app-c2-main {
+  flex: 1;
+  display: grid;
+  transition: grid-template-columns 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+}
+
+.layout-standard {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+}
+
+.layout-theater {
+  grid-template-columns: 1fr 0px;
+}
+
+.layout-split {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Screen Density: Compact Mode (Optimized for 1366x768, 1440x900, 1920x899 displays) */
+.density-compact {
+  --compact-scale: 0.92;
+}
+
+.density-compact .app-c2-header {
+  height: 42px !important;
+  padding: 0 10px !important;
+}
+
+.density-compact .tactical-cop-panel,
+.density-compact .instructor-dashboard-panel {
+  gap: 8px !important;
+  font-size: 11.5px !important;
+}
+
+.density-compact .tactical-cop-panel button,
+.density-compact .instructor-dashboard-panel button {
+  padding: 4px 6px !important;
+  font-size: 9.5px !important;
+}
+
+/* Responsive Breakpoints for Tablets & Mobile Screens (< 1024px) */
+@media (max-width: 1024px) {
+  .app-c2-header {
+    height: auto !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
+  }
+
+  .mobile-tab-bar {
+    display: flex !important;
+  }
+
+  .app-c2-main {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mobile-hide-on-map {
+    display: none !important;
+  }
+
+  .mobile-hide-on-console {
+    display: none !important;
+  }
+}
+
+/* Vertical Height Optimization (Displays with height <= 900px, e.g. 1920x899) */
+@media (max-height: 900px) {
+  .app-c2-header {
+    height: 42px !important;
+    padding: 0 12px !important;
+  }
+
+  .tactical-cop-panel,
+  .instructor-dashboard-panel {
+    gap: 7px !important;
+    font-size: 12px !important;
+  }
+}
+

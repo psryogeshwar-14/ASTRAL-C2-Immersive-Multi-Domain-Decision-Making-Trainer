@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  astral-c2-server:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: astral_c2_tactical_server
+    restart: always
+    ports:
+      - "3001:3001"
+      - "5173:5173"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      # Optional: set GEMINI_API_KEY for online LLM summary; leaves empty for offline DSSC military generator
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    networks:
+      - tactical-net
+
+networks:
+  tactical-net:
+    driver: bridge

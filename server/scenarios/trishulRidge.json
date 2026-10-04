@@ -1,0 +1,87 @@
+{
+  "id": "TRISHUL_PEAK",
+  "title": "Operation Trishul Ridge: High-Altitude Hybrid Defense",
+  "theater": "Eastern Ladakh / Karakoram Northern Sector",
+  "elevation": "4,650m - 5,420m AMSL",
+  "threatLevel": "DEFCON 1",
+  "weather": "Clear Altitude",
+  "briefing": "Adversary has initiated multi-axis probes supported by high-power mobile EW barrage jammers and cyber disruption against automated datalinks. Forward sub-units are experiencing communication blackouts and sensor ghosting in mountain radar shadows. Sub-unit commanders must evaluate contradictory intelligence, neutralize infiltrating mechanized probes, and avoid friendly fire amidst degraded C2.",
+  "instructorInjectDefaults": {
+    "ewJammerPowerKw": 45,
+    "packetLossPct": 35,
+    "latencySec": 12,
+    "enableSpoofing": true,
+    "weatherPenalty": 10
+  },
+  "timedInjects": [
+    {
+      "timeSec": 25,
+      "id": "INJECT_EW_SURGE",
+      "type": "EW_SURGE",
+      "label": "Hostile Krasukha-4 EW Jammer Spins Up",
+      "description": "Hostile electronic warfare system targets tactical VHF nets with high-power sweep jamming.",
+      "effects": {
+        "ewJammerPowerKw": 75,
+        "packetLossPct": 48,
+        "latencySec": 16,
+        "snrDelta": -8.5
+      },
+      "radioAlert": {
+        "callsign": "SAMYUKTA-EW",
+        "domain": "EW",
+        "priority": "FLASH",
+        "text": "FLASH FLASH: High-power RF noise floor elevation detected across 30-88 MHz band. Krasukha-4 emitter active on bearing 342. Switch to FHSS."
+      }
+    },
+    {
+      "timeSec": 60,
+      "id": "INJECT_CYBER_GHOST",
+      "type": "GHOST_DRONE",
+      "label": "False Datalink Injection (Cyber Spoof)",
+      "description": "Adversary cyber unit exploits unencrypted secondary transponder relay to inject phantom strike aircraft.",
+      "effects": {
+        "spawnGhost": true
+      },
+      "radioAlert": {
+        "callsign": "AIR-DEFENSE-RADAR",
+        "domain": "AIR",
+        "priority": "PRIORITY",
+        "text": "PRIORITY: Fast-mover track painted at Grid MH 7920 8430 altitude 7200m. Transponder code invalid. Optical spotters cannot confirm contact."
+      }
+    },
+    {
+      "timeSec": 110,
+      "id": "INJECT_CONTRADICTORY_INTEL",
+      "type": "CONTRADICTORY_REPORT",
+      "label": "Contradictory Enemy Armor Telemetry",
+      "description": "Forward observation post visually spots enemy tanks halted, contradicting automated radar telemetry.",
+      "effects": {
+        "targetUnitId": "OPFOR-ARMOR-COLUMN",
+        "setContradictory": true
+      },
+      "radioAlert": {
+        "callsign": "FORWARD-OBS-ALPHA",
+        "domain": "LAND",
+        "priority": "PRIORITY",
+        "text": "OBSERVATION POST ALPHA: Hostile armor column halted in gorge defile under camouflage net! Automated datalink is reporting obsolete speed. DO NOT FIRE on blind coordinates."
+      }
+    },
+    {
+      "timeSec": 170,
+      "id": "INJECT_VALLEY_BLACKOUT",
+      "type": "RADIO_DROPOUT",
+      "label": "Mountain Defile Radio Blackout",
+      "description": "Charlie Company enters terrain RF shadow; tactical VHF repeater knocked out by drone strike.",
+      "effects": {
+        "targetUnitId": "BLU-CHARLIE",
+        "setSilent": true
+      },
+      "radioAlert": {
+        "callsign": "REGIMENTAL-SIGNALS",
+        "domain": "LAND",
+        "priority": "FLASH",
+        "text": "COMMS ALERT: Charlie Platoon carrier lost on VHF Net 1. Unit entering radio silent defile. Uncertainty ellipse expanded."
+      }
+    }
+  ]
+}
