@@ -3,7 +3,8 @@
 **Target Audience:** Ministry of Defence (MoD) / Defence Services Staff College (DSSC) Wellington Evaluators  
 **Problem Statement:** *Immersive Multi-Domain Decision-Making Trainer for Degraded Communication Environments*  
 **System Name:** **Astral-C2 (Advanced Synthetic Tactical Resilience & After-Action Logger)**  
-**Platform:** Web-First, Multiplayer, Air-Gapped LAN Ready (TypeScript / Node / Three.js)
+**Platform:** Web-First, Multiplayer, Air-Gapped LAN Ready (TypeScript / Node / Three.js)  
+**Live URL:** [https://astral-c2-immersive-multi-domain-de.vercel.app/](https://astral-c2-immersive-multi-domain-de.vercel.app/)  
 
 ---
 

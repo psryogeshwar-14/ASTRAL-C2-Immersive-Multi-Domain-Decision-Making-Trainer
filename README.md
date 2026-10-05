@@ -1,6 +1,12 @@
 # ASTRAL-C2: Immersive Multi-Domain Decision-Making Trainer
 ## Ministry of Defence (MoD) • Defence Services Staff College (DSSC)
 
+[![Live Demo](https://img.shields.io/badge/LIVE%20DEMO-ASTRAL--C2%20CONSOLE-00e5ff?style=for-the-badge&logo=vercel)](https://astral-c2-immersive-multi-domain-de.vercel.app/)
+[![Status](https://img.shields.io/badge/DEPLOYMENT-OPERATIONAL-00ff66?style=for-the-badge)](https://astral-c2-immersive-multi-domain-de.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+> 🌐 **Live Web Application (Vercel):** [https://astral-c2-immersive-multi-domain-de.vercel.app/](https://astral-c2-immersive-multi-domain-de.vercel.app/)
+
 ### Problem Statement Title
 **Immersive Multi-Domain Decision-Making Trainer for Degraded Communication Environments**
 
@@ -117,9 +123,13 @@ fogops/ (sih3)
 
 ---
 
-### Quickstart: Running Full Multiplayer Simulation
+### Quickstart: Try Live or Run Locally
 
-#### Option A: Running with npm (Local Dev & LAN)
+#### Option A: Direct Live Web Access (Zero Install)
+Launch the operational, high-performance wargaming simulator directly in your web browser:  
+👉 **[https://astral-c2-immersive-multi-domain-de.vercel.app/](https://astral-c2-immersive-multi-domain-de.vercel.app/)**
+
+#### Option B: Running with npm (Local Dev & LAN Multiplayer)
 ```bash
 # Terminal 1: Launch Backend Server (WebSocket + REST API on port 3001)
 npm run server
